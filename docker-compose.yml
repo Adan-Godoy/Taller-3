@@ -3,24 +3,20 @@ version: '3.8'
 services:
   localstack:
     container_name: taller3_localstack
-    image: localstack/localstack:latest
+    image: localstack/localstack:3.4.0 
     ports:
-      - "4566:4566" 
+      - "4566:4566"
     environment:
-      - SERVICES=s3 # S3
+      - SERVICES=s3
       - DEBUG=1
-      - DOCKER_HOST=unix:///var/run/docker.sock
-    volumes:
-      - "./localstack-vol:/var/lib/localstack" 
-      - "/var/run/docker.sock:/var/run/docker.sock"
 
   mongodb:
     container_name: taller3_mongodb
     image: mongo:latest
     ports:
-      - "27017:27017" # MongoDB
+      - "27017:27017"
     volumes:
-      - mongo_data:/data/db 
+      - mongo_data:/data/db
 
 volumes:
   mongo_data:
